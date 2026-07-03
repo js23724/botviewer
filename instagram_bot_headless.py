@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-# Set your Instagram username
+# Set your Instagram Chanel video
 instagram_username = 'https://www.instagram.com/reel/DaL4k2RNAfc/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=='
 
 # Configure Chrome to run in headless mode
