@@ -8,17 +8,18 @@ import time
 # Set your Instagram username
 instagram_username = 'https://www.instagram.com/reel/DaL4k2RNAfc/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=='
 
-# Configure Chrome for visible (non-headless) execution
+# Configure Chrome to run in headless mode
 chrome_options = Options()
-# Removed --headless and --disable-gpu to show the browser window
+chrome_options.add_argument("--headless=new")  # Runs Chrome in the background
+chrome_options.add_argument("--window-size=1920,1080")  # Set a virtual window size so elements layout correctly
+chrome_options.add_argument("--disable-gpu")  # Recommended for headless stability
 
 # Initialize the WebDriver with options
 driver = webdriver.Chrome(options=chrome_options)
 
 try:
-    print("Opening website in visible mode...")
+    print("Opening website in headless mode...")
     driver.get('https://leofame.com/free-instagram-views')
-    driver.maximize_window()  # Ensures the browser fills the screen visually
 
     # Set up a max wait time of 15 seconds
     wait = WebDriverWait(driver, 15)
@@ -28,7 +29,7 @@ try:
     username_input = wait.until(
         EC.presence_of_element_located((By.NAME, 'free_link'))
     )
-    # Scroll to the input box to ensure visibility
+    # Scroll to the input box to ensure visibility (still good practice in headless)
     driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", username_input)
     time.sleep(0.5)
     
@@ -47,7 +48,7 @@ try:
     print("Clicking continue button...")
     driver.execute_script("arguments[0].click();", start_button)
 
-    print("\nSuccessfully clicked! Waiting out the 6-minute timer process...")
+    print("\nSuccessfully clicked! Waiting out the 6-minute timer process in the background...")
     time.sleep(360)
 
 except Exception as e:
